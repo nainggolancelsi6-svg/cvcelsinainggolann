@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV & Portofolio | Celsi Olivia Nainggolan - TKJ</title>
+    <!-- Google Fonts: Quicksand & Nunito untuk kesan manis, modern, dan mudah dibaca -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk ikon-ikon lucu & teknis -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pinkbg: '#FFF0F5',      // Lavender Blush
+                        pinksoft: '#FFE4E1',    // Misty Rose
+                        pinkpastel: '#FFB6C1',  // Light Pink
+                        pinkhot: '#FF69B4',     // Hot Pink
+                        pinkdeep: '#E05297',    // Deep Cute Pink
+                        textdark: '#4A3B42',    // Warm Dark Plum/Brown
+                        textmuted: '#7A656F',   // Muted Rose Gray
+                        cream: '#FFFDFD',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS untuk Animasi Lucu & Dekorasi Estetik */
+        body {
+            background-color: #FFF0F5;
+            color: #4A3B42;
+            overflow-x: hidden;
+            background-image: radial-gradient(#FFB6C1 1px, transparent 1px), radial-gradient(#FFE4E1 1px, #FFF0F5 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* Animasi Mengambang (Floating) */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(10px) rotate(-4deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-6deg); }
+            75% { transform: rotate(6deg); }
+        }
+
+        .animate-float {
+            animation: float 4.5s ease-in-out infinite;
+        }
+        .animate-float-reverse {
+            animation: floatReverse 5.5s ease-in-out infinite;
+        }
+        .animate-sparkle {
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+        .hover-wiggle:hover {
+            animation: wiggle 0.5s ease-in-out;
+        }
+
+        /* Kartu Kaca Pastel (Pastel Glassmorphism) */
+        .cute-card {
+            background: rgba(255, 253, 253, 0.88);
+            backdrop-filter: blur(10px);
+            border: 2px solid #FFE4E1;
+            box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.12), 0 4px 10px -2px rgba(255, 182, 193, 0.15);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cute-card:hover {
+            transform: translateY(-6px);
+            border-color: #FFB6C1;
+            box-shadow: 0 16px 32px -5px rgba(255, 105, 180, 0.22);
+        }
+
+        /* Tombol Bouncy */
+        .btn-bouncy {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-bouncy:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+        .btn-bouncy:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Kursor Efek Mengetik */
+        .typing-cursor::after {
+            content: '|';
+            color: #FF69B4;
+            animation: blink 0.8s infinite;
+            font-weight: bold;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Animasi Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar Pink */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB6C1;
+            border-radius: 9999px;
+            border: 2px solid #FFF0F5;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF69B4;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pinkpastel selection:text-white relative">
+
+    <!-- Elemen Dekoratif Melayang di Latar Belakang (Floating Cute Elements) -->
+    <div id="floating-decorations" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <!-- Bintang & Hati Melayang Statis + Dinamis via JS -->
+        <div class="absolute top-20 left-6 text-pinkpastel/60 text-2xl animate-float"><i class="fa-solid fa-star"></i></div>
+        <div class="absolute top-40 right-10 text-pinkhot/40 text-3xl animate-float-reverse"><i class="fa-solid fa-heart"></i></div>
+        <div class="absolute bottom-32 left-12 text-pinkhot/30 text-3xl animate-float-reverse"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-1/2 right-8 text-pinkpastel/70 text-2xl animate-sparkle"><i class="fa-solid fa-sparkles"></i>✨</div>
+        <div class="absolute bottom-20 right-16 text-pinkpastel/60 text-2xl animate-float"><i class="fa-solid fa-wifi"></i></div>
+    </div>
+
+    <!-- Toast Notification untuk Salin Kontak -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-white border-2 border-pinkhot text-textdark px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+        <span class="w-8 h-8 rounded-full bg-pinksoft text-pinkhot flex items-center justify-center">
+            <i class="fa-solid fa-check"></i>
+        </span>
+        <div>
+            <p id="toast-title" class="font-bold text-sm text-pinkdeep">Berhasil!</p>
+            <p id="toast-msg" class="text-xs text-textmuted">Teks disalin ke papan klip.</p>
+        </div>
+    </div>
+
+    <!-- Navigasi Mengambang (Floating Navbar) -->
+    <header class="sticky top-3 z-40 px-4 max-w-5xl mx-auto">
+        <nav class="bg-white/85 backdrop-blur-md border-2 border-pinksoft rounded-full px-5 py-3 shadow-md flex items-center justify-between">
+            <a href="#beranda" class="font-display font-bold text-lg sm:text-xl text-pinkdeep flex items-center gap-2 hover-wiggle">
+                <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-pinkhot to-pinkpastel text-white flex items-center justify-center text-sm shadow-sm">
+                    <i class="fa-solid fa-cat"></i>
+                </span>
+                <span>Celsi<span class="text-pinkhot">.tkj</span></span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <ul class="hidden md:flex items-center gap-6 font-semibold text-sm text-textdark">
+                <li><a href="#tentang" class="hover:text-pinkhot transition-colors">Tentang Saya</a></li>
+                <li><a href="#pendidikan" class="hover:text-pinkhot transition-colors">Pendidikan</a></li>
+                <li><a href="#keahlian" class="hover:text-pinkhot transition-colors">Keahlian</a></li>
+                <li><a href="#proyek" class="hover:text-pinkhot transition-colors">Portofolio</a></li>
+                <li><a href="#kontak" class="hover:text-pinkhot transition-colors">Kontak</a></li>
+            </ul>
+
+            <!-- Tombol CTA Cepat -->
+            <div class="flex items-center gap-2">
+                <a href="https://wa.me/6285788288812?text=Halo%20Celsi%20Olivia%20Nainggolan,%20saya%20tertarik%20dengan%20CV%20lamaran%20kerja%20Anda." target="_blank" rel="noopener noreferrer"
+                   class="btn-bouncy bg-gradient-to-r from-pinkhot to-pinkdeep text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-md flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Chat WA</span>
+                </a>
+                <!-- Tombol Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden w-9 h-9 rounded-full bg-pinksoft text-pinkdeep flex items-center justify-center">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 bg-white/95 backdrop-blur-md border-2 border-pinksoft rounded-3xl p-4 shadow-xl">
+            <ul class="flex flex-col gap-3 font-bold text-center text-textdark text-sm">
+                <li><a href="#tentang" class="mobile-link block py-2 rounded-xl hover:bg-pinkbg hover:text-pinkhot">Tentang Saya</a></li>
+                <li><a href="#pendidikan" class="mobile-link block py-2 rounded-xl hover:bg-pinkbg hover:text-pinkhot">Pendidikan</a></li>
+                <li><a href="#keahlian" class="mobile-link block py-2 rounded-xl hover:bg-pinkbg hover:text-pinkhot">Keahlian TKJ</a></li>
+                <li><a href="#proyek" class="mobile-link block py-2 rounded-xl hover:bg-pinkbg hover:text-pinkhot">Proyek Praktik</a></li>
+                <li><a href="#kontak" class="mobile-link block py-2 rounded-xl hover:bg-pinkbg hover:text-pinkhot">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="relative z-10 max-w-5xl mx-auto px-4 pt-8 pb-20 space-y-16">
+
+        <!-- 1. HERO SECTION -->
+        <section id="beranda" class="cute-card rounded-[2.5rem] p-6 sm:p-10 md:p-12 relative overflow-hidden">
+            <!-- Hiasan Pita Sudut -->
+            <div class="absolute -top-6 -right-6 w-28 h-28 bg-pinksoft rounded-full opacity-60 pointer-events-none"></div>
+            <div class="absolute -bottom-8 -left-8 w-36 h-36 bg-pinkpastel/30 rounded-full pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <!-- Kolom Ilustrasi Avatar Kustom SVG Bertema IT & Cute Pink -->
+                <div class="md:col-span-5 flex flex-col items-center justify-center">
+                    <div class="relative w-56 h-56 sm:w-64 sm:h-64 animate-float">
+                        <!-- Lingkaran Cahaya Belakang -->
+                        <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-pinkpastel via-pinksoft to-white shadow-inner"></div>
+                        
+                        <!-- SVG Ilustrasi Karakter Siswi TKJ Lucu dengan Headset Telinga Kucing & Laptop -->
+                        <svg viewBox="0 0 240 240" class="w-full h-full relative z-10 drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background Badge -->
+                            <circle cx="120" cy="120" r="102" fill="#FFF0F5" stroke="#FFB6C1" stroke-width="4" stroke-dasharray="8 6"/>
+                            
+                            <!-- Rambut Belakang -->
+                            <path d="M62 115 C55 165, 72 195, 92 200 L148 200 C168 195, 185 165, 178 115 Z" fill="#4A3B42"/>
+                            
+                            <!-- Baju / Seragam Blazer Pastel -->
+                            <path d="M74 198 C78 168, 96 160, 120 160 C144 160, 162 168, 166 198 Z" fill="#FF69B4"/>
+                            <!-- Kerah Putih & Pita Lucu -->
+                            <path d="M102 160 L120 178 L138 160 Z" fill="#FFFFFF"/>
+                            <circle cx="120" cy="176" r="5" fill="#E05297"/>
+                            <polygon points="120,176 110,170 110,182" fill="#FFB6C1"/>
+                            <polygon points="120,176 130,170 130,182" fill="#FFB6C1"/>
+
+                            <!-- Leher -->
+                            <rect x="111" y="144" width="18" height="20" rx="8" fill="#FDE2D2"/>
+
+                            <!-- Wajah -->
+                            <circle cx="120" cy="112" r="40" fill="#FFEADF"/>
+
+                            <!-- Poni Rambut -->
+                            <path d="M80 108 C80 75, 160 75, 160 108 C152 94, 138 92, 128 103 C122 93, 110 93, 102 104 C92 94, 84 98, 80 108 Z" fill="#4A3B42"/>
+
+                            <!-- Pipi Merona (Blush) -->
+                            <ellipse cx="97" cy="120" rx="7" ry="4" fill="#FFB6C1" opacity="0.8"/>
+                            <ellipse cx="143" cy="120" rx="7" ry="4" fill="#FFB6C1" opacity="0.8"/>
+
+                            <!-- Mata Berbinar -->
+                            <circle cx="104" cy="112" r="5" fill="#4A3B42"/>
+                            <circle cx="102" cy="110" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="136" cy="112" r="5" fill="#4A3B42"/>
+                            <circle cx="134" cy="110" r="1.8" fill="#FFFFFF"/>
+
+                            <!-- Senyum Manis -->
+                            <path d="M113 124 Q120 131 127 124" stroke="#E05297" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                            <!-- Headset Telinga Kucing (Cat-Ear Headphones) -->
+                            <path d="M77 110 C77 68, 163 68, 163 110" stroke="#FF69B4" stroke-width="7" fill="none" stroke-linecap="round"/>
+                            <!-- Telinga Kucing Kiri -->
+                            <polygon points="84,78 76,54 102,68" fill="#FF69B4" stroke="#E05297" stroke-width="2"/>
+                            <polygon points="86,74 81,60 96,68" fill="#FFE4E1"/>
+                            <!-- Telinga Kucing Kanan -->
+                            <polygon points="156,78 164,54 138,68" fill="#FF69B4" stroke="#E05297" stroke-width="2"/>
+                            <polygon points="154,74 159,60 144,68" fill="#FFE4E1"/>
+                            <!-- Earcups -->
+                            <rect x="70" y="98" width="12" height="26" rx="6" fill="#FF69B4"/>
+                            <rect x="158" y="98" width="12" height="26" rx="6" fill="#FF69B4"/>
+
+                            <!-- Laptop Mini di Bagian Bawah -->
+                            <rect x="86" y="178" width="68" height="40" rx="6" fill="#FFFFFF" stroke="#FFB6C1" stroke-width="3"/>
+                            <!-- Logo Hati / Wi-Fi di Laptop -->
+                            <path d="M120 204 C120 204, 111 197, 111 192 C111 189, 114 187, 116.5 187 C118.2 187, 119.5 188, 120 189.2 C120.5 188, 121.8 187, 123.5 187 C126 187, 129 189, 129 192 C129 197, 120 204, 120 204 Z" fill="#FF69B4"/>
+                        </svg>
+
+                        <!-- Badge Status Mengambang -->
+                        <div class="absolute -bottom-2 right-2 bg-white border-2 border-pinkpastel px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span class="text-xs font-bold text-textdark">Siap Bekerja & Magang ✨</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Perkenalan & Tombol CTA -->
+                <div class="md:col-span-7 text-center md:text-left space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-pinksoft/90 text-pinkdeep font-bold text-xs sm:text-sm px-4 py-1.5 rounded-full border border-pinkpastel">
+                        <i class="fa-solid fa-ribbon"></i>
+                        <span>Curriculum Vitae & Portofolio Online</span>
+                    </div>
+
+                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-[2.65rem] text-textdark leading-tight">
+                        Halo! Saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-pinkhot to-pinkdeep">Celsi Olivia Nainggolan</span>
+                    </h1>
+
+                    <!-- Efek Mengetik (Typing Effect) -->
+                    <div class="h-8 flex items-center justify-center md:justify-start">
+                        <span class="font-display font-bold text-base sm:text-lg text-pinkdeep bg-pinkbg px-3 py-1 rounded-xl border border-pinksoft">
+                            <i class="fa-solid fa-network-wired mr-1.5 text-pinkhot"></i>
+                            <span id="typing-text" class="typing-cursor"></span>
+                        </span>
+                    </div>
+
+                    <p class="text-textmuted text-sm sm:text-base leading-relaxed">
+                        Lulusan jurusan <strong class="text-textdark">Teknik Komputer dan Jaringan (TKJ)</strong> dari <strong class="text-textdark">SMK Negeri 2 Panyabungan</strong> yang antusias, teliti, dan siap berkontribusi di bidang administrasi jaringan, teknis komputer (IT Support), maupun operasional perkantoran di area <strong class="text-textdark">Jakarta Timur</strong> dan sekitarnya.
+                    </p>
+
+                    <!-- Info Singkat Cepat -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs font-semibold text-textdark pt-1">
+                        <span class="bg-white border border-pinksoft px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-pinkhot"></i> Jakarta Timur
+                        </span>
+                        <span class="bg-white border border-pinksoft px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-cake-candles text-pinkhot"></i> 18 Februari 2009
+                        </span>
+                        <span class="bg-white border border-pinksoft px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-utensils text-pinkhot"></i> Hobi Memasak
+                        </span>
+                    </div>
+
+                    <!-- Tombol CTA Utama -->
+                    <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <a href="https://wa.me/6285788288812?text=Halo%20Celsi%20Olivia%20Nainggolan,%20kami%20telah%20melihat%20CV%20Anda%20dan%20ingin%20mengundang%20untuk%20tahap%20selanjutnya." 
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn-bouncy bg-gradient-to-r from-pinkhot to-pinkdeep text-white font-bold text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-pinkhot/30 flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Hubungi via WhatsApp</span>
+                        </a>
+
+                        <a href="mailto:chelsiolivia0088@gmail.com?subject=Peluang%20Kerja%20/%20Interview%20-%20Celsi%20Olivia%20Nainggolan"
+                           class="btn-bouncy bg-white hover:bg-pinksoft/50 text-pinkdeep border-2 border-pinkpastel font-bold text-sm px-6 py-3.5 rounded-2xl shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-base"></i>
+                            <span>Kirim Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TENTANG SAYA & BIODATA -->
+        <section id="tentang" class="reveal space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-pinkhot bg-white px-3 py-1 rounded-full border border-pinksoft">Kenalan Yuk!</span>
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-textdark">Tentang Saya & Biodata Diri</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Kartu Biodata Lengkap -->
+                <div class="md:col-span-6 cute-card rounded-3xl p-6 sm:p-7 space-y-4">
+                    <div class="flex items-center gap-3 border-b-2 border-pinkbg pb-3">
+                        <div class="w-10 h-10 rounded-2xl bg-pinksoft text-pinkhot flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-textdark">Data Pribadi</h3>
+                    </div>
+
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-solid fa-user text-pinkhot w-4"></i> Nama Lengkap</span>
+                            <span class="font-bold text-textdark text-right">Celsi Olivia Nainggolan</span>
+                        </li>
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-solid fa-calendar-day text-pinkhot w-4"></i> Tanggal Lahir</span>
+                            <span class="font-bold text-textdark text-right">18 Februari 2009</span>
+                        </li>
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-solid fa-map-pin text-pinkhot w-4"></i> Domisili</span>
+                            <span class="font-bold text-textdark text-right">Jakarta Timur</span>
+                        </li>
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-pinkhot w-4"></i> Jurusan</span>
+                            <span class="font-bold text-textdark text-right">Teknik Komputer & Jaringan</span>
+                        </li>
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-brands fa-whatsapp text-pinkhot w-4"></i> WhatsApp</span>
+                            <button onclick="copyText('+62 857-8828-8812', 'Nomor WhatsApp')" class="font-bold text-pinkdeep hover:underline text-right flex items-center gap-1" title="Klik untuk salin">
+                                <span>+62 857-8828-8812</span>
+                                <i class="fa-regular fa-copy text-xs"></i>
+                            </button>
+                        </li>
+                        <li class="flex items-start justify-between gap-2 p-2.5 rounded-2xl bg-pinkbg/60">
+                            <span class="text-textmuted font-semibold flex items-center gap-2"><i class="fa-solid fa-envelope text-pinkhot w-4"></i> Email</span>
+                            <button onclick="copyText('chelsiolivia0088@gmail.com', 'Alamat Email')" class="font-bold text-pinkdeep hover:underline text-right break-all flex items-center gap-1" title="Klik untuk salin">
+                                <span>chelsiolivia0088@gmail.com</span>
+                                <i class="fa-regular fa-copy text-xs shrink-0"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kartu Filosofi & Hobi Memasak -->
+                <div class="md:col-span-6 cute-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-4">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 border-b-2 border-pinkbg pb-3">
+                            <div class="w-10 h-10 rounded-2xl bg-pinksoft text-pinkhot flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-textdark">Kepribadian & Hobi Memasak</h3>
+                        </div>
+
+                        <p class="text-sm text-textmuted leading-relaxed">
+                            Saya adalah pribadi yang ramah, disiplin, dan memiliki rasa ingin tahu tinggi terhadap perkembangan teknologi jaringan komputer. Selama menempuh pendidikan di <strong class="text-textdark">SMK Negeri 2 Panyabungan</strong>, saya terbiasa bekerja secara terstruktur baik dalam tim maupun individu.
+                        </p>
+
+                        <!-- Kotak Highlight Hobi Memasak -->
+                        <div class="bg-gradient-to-br from-pinksoft/70 to-pinkbg border-2 border-pinkpastel/60 rounded-2xl p-4 relative">
+                            <div class="flex items-start gap-3">
+                                <div class="w-11 h-11 rounded-2xl bg-white text-pinkhot flex items-center justify-center text-xl shrink-0 shadow-sm hover-wiggle">
+                                    <i class="fa-solid fa-kitchen-set"></i>
+                                </div>
+                                <div class="space-y-1">
+                                    <h4 class="font-display font-bold text-base text-pinkdeep flex items-center gap-1.5">
+                                        <span>Mengapa Hobi Memasak?</span>
+                                        <span>🧁</span>
+                                    </h4>
+                                    <p class="text-xs sm:text-sm text-textdark leading-relaxed">
+                                        Bagi saya, <strong>memasak dan konfigurasi jaringan</strong> punya kemiripan! Keduanya membutuhkan takaran (parameter) yang pas, urutan langkah yang sistematis, kesabaran, serta ketelitian tinggi agar hasilnya memuaskan dan bebas dari kesalahan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Badges Karakter -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-bold bg-white text-pinkdeep border border-pinkpastel px-3 py-1 rounded-full">🌸 Teliti & Rapi</span>
+                        <span class="text-xs font-bold bg-white text-pinkdeep border border-pinkpastel px-3 py-1 rounded-full">⚡ Cepat Belajar</span>
+                        <span class="text-xs font-bold bg-white text-pinkdeep border border-pinkpastel px-3 py-1 rounded-full">🤝 Komunikatif</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PENDIDIKAN -->
+        <section id="pendidikan" class="reveal space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-pinkhot bg-white px-3 py-1 rounded-full border border-pinksoft">Latar Belakang Akademik</span>
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-textdark">Riwayat Pendidikan</h2>
+            </div>
+
+            <div class="cute-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-pinkbg pb-5">
+                    <div class="flex items-start sm:items-center gap-4">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pinkhot to-pinkpastel text-white flex items-center justify-center text-2xl shrink-0 shadow-md">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <div>
+                            <div class="inline-block bg-pinksoft text-pinkdeep text-xs font-bold px-3 py-0.5 rounded-full mb-1">
+                                Sekolah Menengah Kejuruan (SMK)
+                            </div>
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-textdark">SMK Negeri 2 Panyabungan</h3>
+                            <p class="font-bold text-pinkhot text-sm sm:text-base">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
+                        </div>
+                    </div>
+                    <div class="sm:text-right">
+                        <span class="inline-flex items-center gap-1.5 bg-pinkbg border border-pinkpastel text-textdark font-bold text-xs px-4 py-2 rounded-full">
+                            <i class="fa-solid fa-award text-pinkhot"></i> Kompetensi Keahlian TKJ
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Poin Pembelajaran Relevan -->
+                <div class="pt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-textdark">
+                    <div class="flex items-start gap-2.5 bg-pinkbg/50 p-3 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pinkhot mt-0.5"></i>
+                        <span>Mempelajari arsitektur jaringan komputer lokal (LAN), nirkabel (WLAN), serta jaringan luas (WAN).</span>
+                    </div>
+                    <div class="flex items-start gap-2.5 bg-pinkbg/50 p-3 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pinkhot mt-0.5"></i>
+                        <span>Praktik langsung perakitan perangkat keras PC, perawatan berkala, dan diagnosa kerusakan (troubleshooting).</span>
+                    </div>
+                    <div class="flex items-start gap-2.5 bg-pinkbg/50 p-3 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pinkhot mt-0.5"></i>
+                        <span>Konfigurasi perangkat router Mikrotik dasar, manajemen bandwidth, serta simulasi topologi dengan Cisco Packet Tracer.</span>
+                    </div>
+                    <div class="flex items-start gap-2.5 bg-pinkbg/50 p-3 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pinkhot mt-0.5"></i>
+                        <span>Instalasi sistem operasi berbasis GUI (Windows) dan CLI (Linux Debian/Ubuntu dasar) serta administrasi perkantoran.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. KEAHLIAN TEKNIS & SOFT SKILLS -->
+        <section id="keahlian" class="reveal space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-pinkhot bg-white px-3 py-1 rounded-full border border-pinksoft">Kompetensi & Kemampuan</span>
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-textdark">Keahlian Teknis & Soft Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Hard Skills TKJ (7 Kolom) -->
+                <div class="lg:col-span-7 cute-card rounded-3xl p-6 sm:p-7 space-y-5">
+                    <div class="flex items-center gap-3 border-b-2 border-pinkbg pb-3">
+                        <div class="w-10 h-10 rounded-2xl bg-pinksoft text-pinkhot flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-textdark">Hard Skills (Bidang TKJ)</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Skill Item 1 -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-wifi text-pinkhot"></i> Instalasi & Konfigurasi Jaringan (LAN/WLAN & Mikrotik Dasar)</span>
+                                <span class="text-pinkdeep">90%</span>
+                            </div>
+                            <div class="w-full h-3 bg-pinkbg rounded-full overflow-hidden p-0.5 border border-pinksoft">
+                                <div class="h-full bg-gradient-to-r from-pinkpastel to-pinkhot rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 2 -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-ethernet text-pinkhot"></i> Crimping Kabel UTP (Straight/Cross) & Manajemen Kabel</span>
+                                <span class="text-pinkdeep">95%</span>
+                            </div>
+                            <div class="w-full h-3 bg-pinkbg rounded-full overflow-hidden p-0.5 border border-pinksoft">
+                                <div class="h-full bg-gradient-to-r from-pinkpastel to-pinkhot rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 3 -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench text-pinkhot"></i> Perakitan PC & Troubleshooting Hardware</span>
+                                <span class="text-pinkdeep">88%</span>
+                            </div>
+                            <div class="w-full h-3 bg-pinkbg rounded-full overflow-hidden p-0.5 border border-pinksoft">
+                                <div class="h-full bg-gradient-to-r from-pinkpastel to-pinkhot rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 4 -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span class="flex items-center gap-2"><i class="fa-brands fa-windows text-pinkhot"></i> Instalasi Sistem Operasi (Windows & Linux Dasar)</span>
+                                <span class="text-pinkdeep">85%</span>
+                            </div>
+                            <div class="w-full h-3 bg-pinkbg rounded-full overflow-hidden p-0.5 border border-pinksoft">
+                                <div class="h-full bg-gradient-to-r from-pinkpastel to-pinkhot rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 5 -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-file-word text-pinkhot"></i> Microsoft Office (Word, Excel, PowerPoint) & Cisco Packet Tracer</span>
+                                <span class="text-pinkdeep">90%</span>
+                            </div>
+                            <div class="w-full h-3 bg-pinkbg rounded-full overflow-hidden p-0.5 border border-pinksoft">
+                                <div class="h-full bg-gradient-to-r from-pinkpastel to-pinkhot rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills & Tools Badges (5 Kolom) -->
+                <div class="lg:col-span-5 cute-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 border-b-2 border-pinkbg pb-3">
+                            <div class="w-10 h-10 rounded-2xl bg-pinksoft text-pinkhot flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-sparkles">✨</i>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-textdark">Soft Skills Unggulan</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                            <div class="btn-bouncy flex items-center gap-3 p-3 rounded-2xl bg-pinkbg/70 border border-pinksoft">
+                                <span class="w-8 h-8 rounded-xl bg-white text-pinkhot flex items-center justify-center shadow-sm"><i class="fa-solid fa-people-group"></i></span>
+                                <div>
+                                    <p class="font-bold text-sm text-textdark">Kerja Sama Tim</p>
+                                    <p class="text-xs text-textmuted">Kolaboratif saat praktikum & proyek kelompok</p>
+                                </div>
+                            </div>
+                            <div class="btn-bouncy flex items-center gap-3 p-3 rounded-2xl bg-pinkbg/70 border border-pinksoft">
+                                <span class="w-8 h-8 rounded-xl bg-white text-pinkhot flex items-center justify-center shadow-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <div>
+                                    <p class="font-bold text-sm text-textdark">Teliti & Detail-Oriented</p>
+                                    <p class="text-xs text-textmuted">Cermat memeriksa IP Address, urutan kabel & dokumen</p>
+                                </div>
+                            </div>
+                            <div class="btn-bouncy flex items-center gap-3 p-3 rounded-2xl bg-pinkbg/70 border border-pinksoft">
+                                <span class="w-8 h-8 rounded-xl bg-white text-pinkhot flex items-center justify-center shadow-sm"><i class="fa-solid fa-clock"></i></span>
+                                <div>
+                                    <p class="font-bold text-sm text-textdark">Manajemen Waktu</p>
+                                    <p class="text-xs text-textmuted">Disiplin menyelesaikan tugas sesuai tenggat</p>
+                                </div>
+                            </div>
+                            <div class="btn-bouncy flex items-center gap-3 p-3 rounded-2xl bg-pinkbg/70 border border-pinksoft">
+                                <span class="w-8 h-8 rounded-xl bg-white text-pinkhot flex items-center justify-center shadow-sm"><i class="fa-solid fa-comments"></i></span>
+                                <div>
+                                    <p class="font-bold text-sm text-textdark">Komunikatif & Adaptif</p>
+                                    <p class="text-xs text-textmuted">Mudah beradaptasi di lingkungan kerja baru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Perangkat -->
+                    <div class="pt-2 border-t border-pinkbg">
+                        <p class="text-xs font-bold text-textmuted uppercase mb-2">Perangkat & Software Familiar:</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-xs font-semibold bg-pinksoft/70 text-pinkdeep px-2.5 py-1 rounded-lg">Winbox (Mikrotik)</span>
+                            <span class="text-xs font-semibold bg-pinksoft/70 text-pinkdeep px-2.5 py-1 rounded-lg">Cisco Packet Tracer</span>
+                            <span class="text-xs font-semibold bg-pinksoft/70 text-pinkdeep px-2.5 py-1 rounded-lg">VirtualBox</span>
+                            <span class="text-xs font-semibold bg-pinksoft/70 text-pinkdeep px-2.5 py-1 rounded-lg">LAN Tester & Crimping</span>
+                            <span class="text-xs font-semibold bg-pinksoft/70 text-pinkdeep px-2.5 py-1 rounded-lg">MS Office</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PENGALAMAN PRAKTIK & PROYEK PORTOFOLIO TKJ -->
+        <section id="proyek" class="reveal space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-pinkhot bg-white px-3 py-1 rounded-full border border-pinksoft">Pengalaman Praktik Kejuruan</span>
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-textdark">Proyek & Praktikum TKJ</h2>
+                <p class="text-sm text-textmuted max-w-xl mx-auto">Beberapa proyek praktik laboratorium komputer & jaringan yang telah saya kerjakan selama menempuh pendidikan di SMK Negeri 2 Panyabungan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Proyek 1 -->
+                <article class="cute-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pinkhot to-pinkpastel text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-router"></i>
+                        </div>
+                        <span class="inline-block text-xs font-bold text-pinkhot bg-pinkbg px-2.5 py-1 rounded-full">Jaringan & Router</span>
+                        <h3 class="font-display font-bold text-lg text-textdark">Konfigurasi Mikrotik Hotspot & Bandwidth</h3>
+                        <p class="text-xs sm:text-sm text-textmuted leading-relaxed">
+                            Melakukan konfigurasi dasar router Mikrotik menggunakan Winbox meliputi pengaturan IP Address, DHCP Server, NAT Firewall, pembuatan halaman login Hotspot, serta pembagian bandwidth (Simple Queue) agar koneksi stabil.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-pinkbg flex flex-wrap gap-1.5">
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Mikrotik</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Winbox</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">DHCP & NAT</span>
+                    </div>
+                </article>
+
+                <!-- Proyek 2 -->
+                <article class="cute-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pinkhot to-pinkpastel text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-computer"></i>
+                        </div>
+                        <span class="inline-block text-xs font-bold text-pinkhot bg-pinkbg px-2.5 py-1 rounded-full">Hardware & OS</span>
+                        <h3 class="font-display font-bold text-lg text-textdark">Perakitan PC & Instalasi Dual-Boot OS</h3>
+                        <p class="text-xs sm:text-sm text-textmuted leading-relaxed">
+                            Merakit komponen komputer dari nol hingga siap pakai, melakukan pengaturan BIOS, partisi harddisk, instalasi sistem operasi ganda (Windows & Linux), serta instalasi driver dan aplikasi perkantoran standar.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-pinkbg flex flex-wrap gap-1.5">
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">PC Assembly</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Windows</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Linux</span>
+                    </div>
+                </article>
+
+                <!-- Proyek 3 -->
+                <article class="cute-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pinkhot to-pinkpastel text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <span class="inline-block text-xs font-bold text-pinkhot bg-pinkbg px-2.5 py-1 rounded-full">Simulasi & Infrastruktur</span>
+                        <h3 class="font-display font-bold text-lg text-textdark">Simulasi Topologi Jaringan Kantor & Crimping</h3>
+                        <p class="text-xs sm:text-sm text-textmuted leading-relaxed">
+                            Merancang simulasi jaringan antar-divisi kantor menggunakan Cisco Packet Tracer (VLAN & Static Routing) serta mempraktikkan pemasangan konektor RJ45 pada kabel UTP tipe Straight dan Crossover dengan uji LAN Tester 100% terhubung.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-pinkbg flex flex-wrap gap-1.5">
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Packet Tracer</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">Crimping UTP</span>
+                        <span class="text-[11px] font-bold bg-white border border-pinksoft text-textdark px-2.5 py-0.5 rounded-full">VLAN</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 6. KONTAK & CALL TO ACTION -->
+        <section id="kontak" class="reveal">
+            <div class="cute-card rounded-[2.5rem] p-7 sm:p-10 bg-gradient-to-br from-white via-pinkbg/80 to-pinksoft/70 text-center space-y-6 relative overflow-hidden">
+                <div class="inline-flex items-center gap-2 bg-white text-pinkdeep font-bold text-xs px-4 py-1.5 rounded-full border border-pinkpastel shadow-sm">
+                    <i class="fa-solid fa-paper-plane text-pinkhot"></i>
+                    <span>Mari Terhubung!</span>
+                </div>
+
+                <div class="space-y-2 max-w-xl mx-auto">
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl text-textdark">Tertarik Merekrut atau Bekerja Sama?</h2>
+                    <p class="text-sm sm:text-base text-textmuted">
+                        Saya sangat terbuka untuk kesempatan kerja (IT Support, Teknisi Jaringan, Admin Perkantoran) maupun program magang di wilayah <strong class="text-textdark">Jakarta Timur</strong>. Silakan hubungi saya kapan saja!
+                    </p>
+                </div>
+
+                <!-- Kartu Kontak Interaktif -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-2">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6285788288812?text=Halo%20Celsi%20Olivia%20Nainggolan,%20saya%20tertarik%20menghubungi%20Anda%20terkait%20lamaran%20kerja." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="btn-bouncy bg-white border-2 border-pinksoft hover:border-pinkhot p-4 rounded-2xl flex flex-col items-center gap-2 shadow-sm">
+                        <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <span class="font-bold text-xs text-textmuted uppercase">WhatsApp</span>
+                        <span class="font-bold text-sm text-textdark">+62 857-8828-8812</span>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:chelsiolivia0088@gmail.com?subject=Undangan%20Interview%20-%20Celsi%20Olivia%20Nainggolan"
+                       class="btn-bouncy bg-white border-2 border-pinksoft hover:border-pinkhot p-4 rounded-2xl flex flex-col items-center gap-2 shadow-sm">
+                        <div class="w-11 h-11 rounded-full bg-pinksoft text-pinkhot flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <span class="font-bold text-xs text-textmuted uppercase">Email</span>
+                        <span class="font-bold text-xs sm:text-sm text-textdark break-all">chelsiolivia0088@gmail.com</span>
+                    </a>
+
+                    <!-- Lokasi -->
+                    <div class="btn-bouncy bg-white border-2 border-pinksoft p-4 rounded-2xl flex flex-col items-center gap-2 shadow-sm">
+                        <div class="w-11 h-11 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <span class="font-bold text-xs text-textmuted uppercase">Domisili</span>
+                        <span class="font-bold text-sm text-textdark">Jakarta Timur, Indonesia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-white/80 backdrop-blur-md border-t-2 border-pinksoft py-6 px-4 text-center">
+        <div class="max-w-5xl mx-auto space-y-2">
+            <p class="font-display font-bold text-sm text-textdark flex items-center justify-center gap-1.5">
+                <span>Dibuat dengan</span>
+                <i class="fa-solid fa-heart text-pinkhot animate-pulse"></i>
+                <span>oleh <span class="text-pinkdeep">Celsi Olivia Nainggolan</span></span>
+            </p>
+            <p class="text-xs text-textmuted">
+                Alumni Teknik Komputer & Jaringan — SMK Negeri 2 Panyabungan • Siap di-hosting di GitHub Pages
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Interaktivitas, Animasi Mengetik, Scroll Reveal & Salin Teks -->
+    <script>
+        // 1. Efek Mengetik (Typing Effect) di Hero Section
+        const roles = [
+            "Teknik Komputer & Jaringan (TKJ)",
+            "Junior Network Technician",
+            "IT Support Enthusiast",
+            "Lulusan SMK Negeri 2 Panyabungan"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById("typing-text");
+
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 45 : 85;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                speed = 1800; // Jeda setelah selesai mengetik
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                speed = 400;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+
+        // 2. Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            reveals.forEach((el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    el.classList.add("active");
+                }
+            });
+        }
+
+        // 3. Fungsi Salin Teks ke Clipboard dengan Toast Notification Lucu
+        function copyText(text, label) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById("toast");
+            const toastTitle = document.getElementById("toast-title");
+            const toastMsg = document.getElementById("toast-msg");
+
+            toastTitle.textContent = label + " Disalin! ✨";
+            toastMsg.textContent = text;
+
+            toast.classList.remove("translate-y-24", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-24", "opacity-0");
+            }, 3000);
+        }
+
+        // 4. Toggle Menu Mobile
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        });
+
+        // 5. Generate Partikel Lucu Tambahan di Background
+        function createFloatingParticles() {
+            const container = document.getElementById("floating-decorations");
+            const icons = ["fa-heart", "fa-star", "fa-laptop-code", "fa-cookie-bite"];
+            const colors = ["text-pinkpastel/40", "text-pinkhot/25", "text-pinksoft"];
+
+            for (let i = 0; i < 8; i++) {
+                const el = document.createElement("div");
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const topPos = Math.floor(Math.random() * 90) + 5;
+                const leftPos = Math.floor(Math.random() * 90) + 5;
+                const animClass = i % 2 === 0 ? "animate-float" : "animate-float-reverse";
+
+                el.className = `absolute ${randomColor} text-lg sm:text-xl ${animClass}`;
+                el.style.top = `${topPos}%`;
+                el.style.left = `${leftPos}%`;
+                el.style.animationDelay = `${i * 0.6}s`;
+                el.innerHTML = `<i class="fa-solid ${randomIcon}"></i>`;
+                container.appendChild(el);
+            }
+        }
+
+        // Jalankan saat halaman dimuat
+        window.addEventListener("DOMContentLoaded", () => {
+            typeEffect();
+            revealOnScroll();
+            createFloatingParticles();
+        });
+        window.addEventListener("scroll", revealOnScroll);
+    </script>
+</body>
+</html>
